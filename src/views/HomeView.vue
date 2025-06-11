@@ -1,10 +1,7 @@
-<script setup lang="ts">
-import Button from 'primevue/button'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <main>
+  <section>
     <h1>Hello from Vue!</h1>
-    <Button>Hello</Button>
-  </main>
+  </section>
 </template>
