@@ -1,4 +1,4 @@
-const productKeys = {
+export const productKeys = {
   all: ['products'] as const,
   lists: () => [...productKeys.all, 'list'] as const,
   list: (limit: number) => [...productKeys.lists(), limit] as const,

@@ -1,4 +1,4 @@
-const auctionKeys = {
+export const auctionKeys = {
   all: ['auctions'] as const,
   lists: () => [...auctionKeys.all, 'list'] as const,
   list: (limit: number) => [...auctionKeys.lists(), limit] as const,
