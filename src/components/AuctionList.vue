@@ -10,7 +10,8 @@ const { data: auctions, isLoading, isError, error } = useGetAuctions(10)
 
   <span v-if="isLoading">Loading...</span>
   <span v-else-if="isError">Error: {{ error?.message }}</span>
-  <ul v-else-if="auctions" class="grid grid-cols-12 gap-4">
+
+  <ul v-else class="grid grid-cols-12 gap-4">
     <AuctionCard v-for="{ id, product_id } in auctions.data" :key="id" :productId="product_id" />
   </ul>
 </template>
