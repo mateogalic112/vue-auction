@@ -2,16 +2,16 @@ import type { Auction } from '@/models/Auction.model'
 import { useQuery } from '@tanstack/vue-query'
 import { auctionKeys } from './queryKeys'
 
-const getAuctions = (limit: number) =>
-  fetch(`${import.meta.env.VITE_API_URL}/auctions?limit=${limit}`, {
+const getAuctions = async (limit: number) => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/auctions?limit=${limit}`, {
     credentials: 'include',
-  }).then(async (res) => {
-    if (!res.ok) {
-      throw new Error(await res.text())
-    }
-    const data = await res.json()
-    return data as { data: Auction[]; nextCursor: number | null }
   })
+  if (!response.ok) {
+    throw new Error(`Failed to get auctions`)
+  }
+  const data = await response.json()
+  return data as { data: Auction[]; nextCursor: number | null }
+}
 
 export const useGetAuctions = (limit: number) => {
   return useQuery({

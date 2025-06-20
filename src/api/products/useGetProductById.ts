@@ -2,16 +2,16 @@ import { useQuery } from '@tanstack/vue-query'
 import type { Product } from '@/models/Product.model'
 import { productKeys } from './queryKeys'
 
-const getProductByd = (id: number) =>
-  fetch(`${import.meta.env.VITE_API_URL}/products/${id}`, {
+const getProductByd = async (id: number) => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/products/${id}`, {
     credentials: 'include',
-  }).then(async (res) => {
-    if (!res.ok) {
-      throw new Error(await res.text())
-    }
-    const data = await res.json()
-    return data as { data: Product }
   })
+  if (!response.ok) {
+    throw new Error(`Failed to get product by id: ${id}`)
+  }
+  const data = await response.json()
+  return data as { data: Product }
+}
 
 export const useGetProductById = (id: number) => {
   return useQuery({
