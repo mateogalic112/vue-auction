@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AuctionBids from '@/components/AuctionBids.vue'
 defineProps<{
   auction: Auction
 }>()
@@ -18,5 +19,7 @@ defineProps<{
         })
       }}</time></small
     >
+
+    <AuctionBids :auctionId="auction.id" />
   </section>
 </template>
