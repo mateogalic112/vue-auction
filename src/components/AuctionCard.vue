@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useGetProductById } from '@/api/products/useGetProductById'
 import { Auction } from '@/models/Auction.model.ts'
+import { RouterLink } from 'vue-router'
 
 const props = defineProps<{
   auction: Auction
@@ -19,5 +20,10 @@ const { data: product } = useGetProductById(props.auction.product_id)
     <h2>{{ product.data.name }}</h2>
     <small>{{ product.data.description }}</small>
     <p class="p-1 border border-red-400 w-fit" v-if="auction.is_cancelled">Cancelled</p>
+    <RouterLink
+      class="p-1 border border-slate-700 bg-slate-500 text-white"
+      :to="{ name: 'AuctionDetails', params: { id: auction.product_id } }"
+      >Bid</RouterLink
+    >
   </li>
 </template>
