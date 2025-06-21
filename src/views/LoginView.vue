@@ -1,24 +1,15 @@
 <script setup lang="ts">
-async function onSubmit(event: Event) {
+import { useLogin } from '@/api/auth/useLogin.ts'
+
+const { mutate: login } = useLogin()
+
+function onSubmit(event: Event) {
   const formData = new FormData(event.target as HTMLFormElement)
 
   const email = formData.get('email')
   const password = formData.get('password')
 
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
-    method: 'POST',
-    credentials: 'include',
-    body: JSON.stringify({ email, password }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-
-  if (!response.ok) {
-    throw new Error('Failed to login')
-  }
-
-  return response.json()
+  login({ email, password })
 }
 </script>
 
