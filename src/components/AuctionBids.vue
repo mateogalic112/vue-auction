@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import { useGetAuctionBids } from '@/api/bids/useGetAuctionBids'
+import { useListenBidCreated } from '@/api/bids/useListenBidCreated'
 import { formattedPrice } from '@/utils/price'
+import { onMounted } from 'vue'
 const props = defineProps<{
   auctionId: number
 }>()
 const { data: bids, isLoading, isError, error } = useGetAuctionBids(props.auctionId)
+
+onMounted(() => {
+  useListenBidCreated(props.auctionId)
+})
 </script>
 
 <template>
