@@ -6,3 +6,8 @@ export interface Bid {
   created_at: Date
   updated_at: Date
 }
+
+export interface CreateBidPayload {
+  auction_id: number
+  amount: number
+}

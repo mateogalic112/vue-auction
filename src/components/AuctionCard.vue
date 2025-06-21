@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useGetProductById } from '@/api/products/useGetProductById'
-import { Auction } from '@/models/Auction.model.ts'
+import type { Auction } from '@/models/Auction.model.ts'
 import { RouterLink } from 'vue-router'
 
 const props = defineProps<{

@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import { socket, state } from '@/config/socket'
+import { onUnmounted } from 'vue'
 
-socket.off()
+onUnmounted(() => {
+  socket.off()
+})
 </script>
 
 <template>

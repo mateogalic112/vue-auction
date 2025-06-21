@@ -21,7 +21,5 @@ const { data: bids, isLoading, isError, error } = useGetAuctionBids(props.auctio
         {{ formattedPrice(bid.amount) }}
       </p>
     </li>
-
-    <li v-else>Not a good state to be in bro...</li>
   </ul>
 </template>
