@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Auction } from '@/models/Auction.model.ts'
 import AuctionBids from '@/components/AuctionBids.vue'
 defineProps<{
   auction: Auction
