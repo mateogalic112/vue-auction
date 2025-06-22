@@ -2,6 +2,15 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { socket, state } from '@/config/socket'
 import { onUnmounted } from 'vue'
+import type { HttpError } from './models/Api.model'
+import { useToast } from 'primevue/usetoast'
+import Toast from 'primevue/toast'
+
+const toast = useToast()
+
+socket.on('bids:error', (error: HttpError) => {
+  toast.add({ severity: 'error', summary: 'Error', detail: error.message, life: 3000 })
+})
 
 onUnmounted(() => {
   socket.off()
@@ -9,7 +18,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <main class="flex flex-col min-h-dvh bg-gray-400">
+  <Toast />
+  <main class="flex flex-col min-h-dvh">
     <header>
       <nav class="flex gap-4 items-center">
         <RouterLink to="/">Home</RouterLink>
