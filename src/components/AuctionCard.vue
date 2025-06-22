@@ -7,13 +7,15 @@ const props = defineProps<{
   auction: Auction
 }>()
 
-const { data: product } = useGetProductById(props.auction.product_id)
+const { data: product, isLoading, isError, error } = useGetProductById(props.auction.product_id)
 </script>
 
 <template>
-  <span v-if="!product">Loading...</span>
+  <span v-if="isLoading">Loading...</span>
+  <span v-else-if="isError">{{ error?.message }}</span>
+
   <li
-    v-else
+    v-else-if="product"
     class="flex flex-col gap-2 p-2 border border-slate-200 col-span-12 md:col-span-6 lg:col-span-4 bg-slate-400"
   >
     <img :src="product.data.image_url" class="w-32 h-32 object-cover" />
