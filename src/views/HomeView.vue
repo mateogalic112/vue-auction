@@ -1,21 +1,8 @@
 <script setup lang="ts">
+import { useGetCurrentUser } from '@/api/auth/useCurrentUser'
 import AuctionList from '@/components/AuctionList.vue'
-import { useQuery } from '@tanstack/vue-query'
 
-const { data, isLoading, isError, error } = useQuery({
-  queryKey: ['auth', 'me'],
-  retry: false,
-  queryFn: () =>
-    fetch(`${import.meta.env.VITE_API_URL}/auth/me`, {
-      credentials: 'include',
-    }).then(async (res) => {
-      if (!res.ok) {
-        throw new Error('Not logged ini')
-      }
-      const data = await res.json()
-      return data as { data: { username: string } }
-    }),
-})
+const { data: currentUser, isLoading, isError, error } = useGetCurrentUser()
 </script>
 
 <template>
@@ -24,7 +11,7 @@ const { data, isLoading, isError, error } = useQuery({
 
     <span v-if="isLoading">Loading...</span>
     <span v-else-if="isError">Error: {{ error?.message }}</span>
-    <span v-else>Logged in! {{ data?.data.username }}</span>
+    <span v-else-if="currentUser">Logged in! {{ currentUser.data.username }}</span>
 
     <AuctionList />
   </section>
