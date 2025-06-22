@@ -17,5 +17,6 @@ export const useGetAuctionById = (id: number) => {
   return useQuery({
     queryKey: auctionKeys.detail(id),
     queryFn: () => getAuctionByd(id),
+    select: (response) => response.data,
   })
 }
