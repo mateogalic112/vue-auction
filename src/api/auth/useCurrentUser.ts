@@ -19,5 +19,6 @@ export const useGetCurrentUser = () => {
     queryKey: authKeys.me(),
     queryFn: getCurrentUser,
     retry: false,
+    select: (response) => response.data,
   })
 }

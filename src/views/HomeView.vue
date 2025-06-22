@@ -11,7 +11,7 @@ const { data: currentUser, isLoading, isError, error } = useGetCurrentUser()
 
     <span v-if="isLoading">Loading...</span>
     <span v-else-if="isError">Error: {{ error?.message }}</span>
-    <span v-else-if="currentUser">Logged in! {{ currentUser.data.username }}</span>
+    <span v-else-if="currentUser">Logged in! {{ currentUser.username }}</span>
 
     <AuctionList />
   </section>

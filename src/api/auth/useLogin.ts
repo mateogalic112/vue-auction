@@ -13,13 +13,10 @@ const login = async (payload: LoginPayload) => {
       'Content-Type': 'application/json',
     },
   })
-
   if (!response.ok) {
     throw new Error('Failed to login')
   }
-
   const user = await response.json()
-
   return user as ApiResponse<User>
 }
 

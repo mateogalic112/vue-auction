@@ -11,7 +11,7 @@ const getAuctionBids = async (auctionId: number) => {
     throw new Error(`Failed to get auction bids for auction: ${auctionId}`)
   }
   const data = await response.json()
-  return data as ApiResponse<Array<Bid>>
+  return data as ApiResponse<Bid[]>
 }
 
 export const useGetAuctionBids = (auctionId: number) => {

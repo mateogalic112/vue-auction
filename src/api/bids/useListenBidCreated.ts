@@ -8,18 +8,15 @@ export function useListenBidCreated(auctionId: number) {
   const queryClient = useQueryClient()
 
   socket.on('bids:created', (data) => {
-    const parsedBid = data as { data: Bid }
+    const parsedBid = data as ApiResponse<Bid>
 
-    queryClient.setQueryData(
-      bidKeys.auctionBidList(auctionId),
-      (oldData: ApiResponse<Array<Bid>>) => {
-        if (oldData.data.find((prev) => prev.id === parsedBid.data.id)) {
-          return oldData
-        }
-        return {
-          data: [parsedBid.data, ...oldData.data],
-        }
-      },
-    )
+    queryClient.setQueryData(bidKeys.auctionBidList(auctionId), (oldData: ApiResponse<Bid[]>) => {
+      if (oldData.data.find((prev) => prev.id === parsedBid.data.id)) {
+        return oldData
+      }
+      return {
+        data: [parsedBid.data, ...oldData.data],
+      }
+    })
   })
 }
