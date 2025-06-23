@@ -12,6 +12,10 @@ socket.on('bids:error', (error: HttpError) => {
   toast.add({ severity: 'error', summary: 'Error', detail: error.message, life: 3000 })
 })
 
+socket.on('auctions:error', (error: HttpError) => {
+  toast.add({ severity: 'error', summary: 'Error', detail: error.message, life: 3000 })
+})
+
 onUnmounted(() => {
   socket.off()
 })
