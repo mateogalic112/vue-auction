@@ -7,6 +7,7 @@ import AuctionBids from '@/components/AuctionBids.vue'
 import { socket } from '@/config/socket.ts'
 import { useQueryClient } from '@tanstack/vue-query'
 import { bidKeys } from '@/api/bids/queryKeys'
+import { addHours } from 'date-fns'
 
 const route = useRoute()
 
@@ -30,17 +31,30 @@ onUnmounted(() => {
     <span v-if="isLoading">Loading...</span>
     <span v-else-if="isError">Error: {{ error?.message }}</span>
 
-    <section v-else-if="auction">
-      <h1>Hello from Auction Details!</h1>
+    <section v-else-if="auction" class="flex flex-col gap-1">
+      <h1>Hello from Auction {{ auction.id }}!</h1>
       <small
         >Start time:
         <time>{{
           new Date(auction.start_time).toLocaleDateString('en-US', {
-            weekday: 'long',
             year: 'numeric',
             month: 'long',
             day: 'numeric',
           })
+        }}</time></small
+      >
+
+      <small
+        >End time:
+        <time>{{
+          new Date(addHours(auction.start_time, auction.duration_hours)).toLocaleDateString(
+            'en-US',
+            {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            },
+          )
         }}</time></small
       >
 
