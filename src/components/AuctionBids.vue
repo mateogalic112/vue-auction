@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useGetAuctionBids } from '@/api/bids/useGetAuctionBids'
 import { useListenBidCreated } from '@/api/bids/useListenBidCreated'
-import { formattedPrice } from '@/utils/price'
 import { onMounted } from 'vue'
+import BidCard from './BidCard.vue'
 
 const props = defineProps<{
   auctionId: number
@@ -21,31 +21,13 @@ onMounted(() => {
     <li v-else-if="isError">Error: {{ error?.message }}</li>
 
     <TransitionGroup name="list" tag="ul" v-else-if="bids">
-      <li
+      <BidCard
         v-for="(bid, index) in bids.data"
         :key="bid.id"
-        :class="{
-          'flex items-center justify-between gap-2 p-2': true,
-          'text-green-600 font-bold': index === 0, // e.g. highest bid
-          'border-b border-gray-100': index !== bids.data.length - 1,
-        }"
-      >
-        <p>
-          {{ formattedPrice(bid.amount) }}
-        </p>
-
-        <small
-          ><time>{{
-            new Date(bid.created_at).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-              hour: 'numeric',
-              minute: 'numeric',
-            })
-          }}</time></small
-        >
-      </li>
+        :bid="bid"
+        :isHighestBid="index === 0"
+        :isLowestBid="index !== bids.data.length - 1"
+      />
     </TransitionGroup>
   </ul>
 </template>
