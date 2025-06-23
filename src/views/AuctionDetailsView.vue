@@ -12,7 +12,7 @@ const { data: auction, isLoading, isError, error } = useGetAuctionById(+route.pa
 
 onMounted(() => {
   if (!state.connected) return
-  socket.emit('auctions:join', { auction_id: +route.params.id })
+  socket.emit('auctions:join_auction', { auction_id: +route.params.id })
 })
 </script>
 
