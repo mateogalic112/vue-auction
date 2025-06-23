@@ -3,6 +3,7 @@ import { authKeys } from './queryKeys'
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
 import type { ApiResponse } from '@/models/Api.model'
 import { useRouter } from 'vue-router'
+import { socket } from '@/config/socket'
 
 const login = async (payload: LoginPayload) => {
   const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
@@ -30,6 +31,11 @@ export const useLogin = () => {
       await queryClient.invalidateQueries({
         queryKey: authKeys.me(),
       })
+
+      // @dev Reset socket connection to pick up cookie credentails after login
+      socket.disconnect()
+      socket.connect()
+
       router.replace({ path: '/' })
     },
   })
