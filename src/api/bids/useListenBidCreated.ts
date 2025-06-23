@@ -7,7 +7,7 @@ import type { ApiResponse } from '@/models/Api.model'
 export function useListenBidCreated(auctionId: number) {
   const queryClient = useQueryClient()
 
-  socket.on('bids:created', (data) => {
+  socket.on('bids:bid_created', (data) => {
     const parsedBid = data as ApiResponse<Bid>
 
     queryClient.setQueryData(bidKeys.auctionBidList(auctionId), (oldData: ApiResponse<Bid[]>) => {
