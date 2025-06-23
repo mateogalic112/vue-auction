@@ -1,18 +1,27 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { useGetAuctionById } from '@/api/auctions/useGetAuctionById'
 import CreateBidForm from '@/components/CreateBidForm.vue'
 import AuctionBids from '@/components/AuctionBids.vue'
-import { socket, state } from '@/config/socket.ts'
+import { socket } from '@/config/socket.ts'
+import { useQueryClient } from '@tanstack/vue-query'
+import { bidKeys } from '@/api/bids/queryKeys'
 
 const route = useRoute()
 
-const { data: auction, isLoading, isError, error } = useGetAuctionById(+route.params.id)
+const auction_id = +route.params.id
+const { data: auction, isLoading, isError, error } = useGetAuctionById(auction_id)
+
+const queryClient = useQueryClient()
 
 onMounted(() => {
-  if (!state.connected) return
-  socket.emit('auctions:join_auction', { auction_id: +route.params.id })
+  queryClient.invalidateQueries({ queryKey: bidKeys.auctionBidList(auction_id) })
+  socket.emit('auctions:join_auction', { auction_id })
+})
+
+onUnmounted(() => {
+  socket.emit('auctions:leave_auction', { auction_id })
 })
 </script>
 
