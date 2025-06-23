@@ -4,7 +4,6 @@ import { socket, state } from '@/config/socket'
 import { onUnmounted } from 'vue'
 import type { HttpError } from './models/Api.model'
 import { useToast } from 'primevue/usetoast'
-import Toast from 'primevue/toast'
 
 const toast = useToast()
 
