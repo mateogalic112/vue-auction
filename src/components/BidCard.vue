@@ -11,8 +11,8 @@ defineProps<{
 
 <template>
   <li
+    class="flex items-center justify-between gap-2 p-2"
     :class="{
-      'flex items-center justify-between gap-2 p-2': true,
       'text-green-600 font-bold': isHighestBid,
       'border-b border-gray-100': isLowestBid,
     }"
