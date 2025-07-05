@@ -4,6 +4,7 @@ import { socket, state } from '@/config/socket'
 import { onUnmounted } from 'vue'
 import type { HttpError } from './models/Api.model'
 import { useToast } from 'primevue/usetoast'
+import { useGetCurrentUser } from './api/auth/useCurrentUser'
 
 const toast = useToast()
 
@@ -18,6 +19,8 @@ socket.on('auctions:error', (error: HttpError) => {
 onUnmounted(() => {
   socket.off()
 })
+
+const { data: currentUser } = useGetCurrentUser()
 </script>
 
 <template>
@@ -26,7 +29,7 @@ onUnmounted(() => {
     <header>
       <nav class="flex gap-4 items-center">
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
+        <RouterLink to="/login" v-show="!currentUser">Login</RouterLink>
         <small v-if="state.connected">✅</small>
         <small v-else>❌</small>
       </nav>
