@@ -18,7 +18,7 @@ defineProps<{
     }"
   >
     <p>
-      {{ formattedPrice(bid.amount) }}
+      {{ formattedPrice(bid.amount_in_cents) }}
     </p>
 
     <small

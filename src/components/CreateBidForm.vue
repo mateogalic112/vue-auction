@@ -11,7 +11,7 @@ function onSubmit(event: Event) {
   const auction_id = formData.get('auction_id')
   const amount = formData.get('amount')
 
-  socket.emit('bids:create_bid', { amount, auction_id })
+  socket.emit('bids:create_bid', { amount_in_cents: amount, auction_id })
 }
 </script>
 
