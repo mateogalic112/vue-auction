@@ -18,7 +18,7 @@ export const useGetCurrentUser = () => {
   return useQuery({
     queryKey: authKeys.me(),
     queryFn: getCurrentUser,
-    retry: false,
     select: (response) => response.data,
+    retry: false,
   })
 }
