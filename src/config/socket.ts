@@ -12,3 +12,7 @@ export const socket = io('http://localhost:4000', {
 socket.on('connect', () => {
   state.connected = true
 })
+
+socket.on('disconnect', () => {
+  state.connected = false
+})
