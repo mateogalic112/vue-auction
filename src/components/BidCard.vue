@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Bid } from '@/models/Bid.model'
-import { formattedPrice } from '@/utils/price'
+import { PriceUtils } from '@/utils/price'
 
 defineProps<{
   bid: Bid
@@ -18,7 +18,7 @@ defineProps<{
     }"
   >
     <p>
-      {{ formattedPrice(bid.amount_in_cents) }}
+      {{ PriceUtils.formatPrice(bid.amount_in_cents) }}
     </p>
 
     <small
