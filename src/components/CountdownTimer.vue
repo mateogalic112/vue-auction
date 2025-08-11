@@ -65,7 +65,7 @@ onUnmounted(() => {
 <template>
   <div class="p-3 border-gray-50 rounded-lg border">
     <div v-if="timeRemaining.totalMs <= 0" class="text-center p-2 border border-red-100 rounded-lg">
-      <span class="text-red-600 font-bold">AUCTION ENDED</span>
+      <span class="text-gray-500 font-bold">AUCTION ENDED</span>
     </div>
 
     <div v-else class="text-center">
