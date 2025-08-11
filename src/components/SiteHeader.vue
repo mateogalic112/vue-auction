@@ -13,7 +13,6 @@ const { mutate: logout, isPending } = useLogout()
   <header>
     <nav class="flex gap-4 items-center">
       <RouterLink to="/">Home</RouterLink>
-      <p></p>
       <RouterLink to="/login" v-show="!currentUser">Login</RouterLink>
       <Button
         @click="() => logout()"
