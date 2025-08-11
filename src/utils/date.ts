@@ -1,0 +1,9 @@
+export class DateUtils {
+  static formatDate(date: Date) {
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  }
+}
