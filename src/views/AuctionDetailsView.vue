@@ -35,13 +35,13 @@ onUnmounted(() => {
     <section v-else-if="auction" class="flex flex-col gap-1">
       <h1>Hello from Auction {{ auction.id }}!</h1>
       <small
-        >Start time: <time>{{ DateUtils.formatDate(auction.start_time) }}</time></small
+        >Start time: <time>{{ DateUtils.formatDate(new Date(auction.start_time)) }}</time></small
       >
 
       <small
         >End time:
         <time>{{
-          DateUtils.formatDate(addHours(auction.start_time, auction.duration_hours))
+          DateUtils.formatDate(addHours(new Date(auction.start_time), auction.duration_hours))
         }}</time></small
       >
 

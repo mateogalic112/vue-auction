@@ -4,6 +4,6 @@ export interface Product {
   name: string
   description: string
   image_url: string
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }

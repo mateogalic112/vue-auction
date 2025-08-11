@@ -3,8 +3,8 @@ export interface Bid {
   auction_id: number
   user_id: number
   amount_in_cents: number
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 export interface CreateBidPayload {

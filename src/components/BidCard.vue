@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Bid } from '@/models/Bid.model'
 import { PriceUtils } from '@/utils/price'
+import { DateUtils } from '@/utils/date'
 
 defineProps<{
   bid: Bid
@@ -22,15 +23,7 @@ defineProps<{
     </p>
 
     <small
-      ><time>{{
-        new Date(bid.created_at).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-        })
-      }}</time></small
+      ><time>{{ DateUtils.formatDate(new Date(bid.created_at)) }}</time></small
     >
   </li>
 </template>

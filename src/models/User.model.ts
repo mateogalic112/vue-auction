@@ -2,8 +2,8 @@ export interface User {
   id: number
   username: string
   email: string
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 export interface LoginPayload {

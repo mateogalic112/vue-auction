@@ -3,10 +3,10 @@ export interface Auction {
   creator_id: number
   product_id: number
   winner_id: number | null
-  start_time: Date
+  start_time: string
   duration_hours: number
   starting_price_in_cents: number
   is_cancelled: boolean
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
