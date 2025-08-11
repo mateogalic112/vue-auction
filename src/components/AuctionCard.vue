@@ -2,6 +2,7 @@
 import { useGetProductById } from '@/api/products/useGetProductById'
 import type { Auction } from '@/models/Auction.model.ts'
 import { RouterLink } from 'vue-router'
+import CountdownTimer from './CountdownTimer.vue'
 
 const props = defineProps<{
   auction: Auction
@@ -22,7 +23,15 @@ const { data: product, isLoading, isError, error } = useGetProductById(props.auc
     <h2>{{ product.data.name }}</h2>
     <small>{{ product.data.description }}</small>
     <p class="p-1 border border-red-400 w-fit" v-if="auction.is_cancelled">Cancelled</p>
+
+    <CountdownTimer
+      v-if="!props.auction.is_cancelled"
+      :startTime="auction.start_time"
+      :durationHours="auction.duration_hours"
+    />
+
     <RouterLink
+      v-show="!props.auction.is_cancelled"
       class="p-1 border border-slate-700 bg-slate-500 text-white"
       :to="{ name: 'auctionDetails', params: { id: auction.product_id } }"
       >Bid</RouterLink

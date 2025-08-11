@@ -4,6 +4,7 @@ import { onMounted, onUnmounted } from 'vue'
 import { useGetAuctionById } from '@/api/auctions/useGetAuctionById'
 import CreateBidForm from '@/components/CreateBidForm.vue'
 import AuctionBids from '@/components/AuctionBids.vue'
+import CountdownTimer from '@/components/CountdownTimer.vue'
 import { socket } from '@/config/socket.ts'
 import { useQueryClient } from '@tanstack/vue-query'
 import { bidKeys } from '@/api/bids/queryKeys'
@@ -44,6 +45,8 @@ onUnmounted(() => {
           DateUtils.formatDate(addHours(new Date(auction.start_time), auction.duration_hours))
         }}</time></small
       >
+
+      <CountdownTimer :startTime="auction.start_time" :durationHours="auction.duration_hours" />
 
       <CreateBidForm :auctionId="auction.id" />
       <AuctionBids :auctionId="auction.id" />
