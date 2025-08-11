@@ -16,7 +16,7 @@ const router = createRouter({
       name: 'login',
       component: LoginView,
     },
-    { path: '/auctions/:id', name: 'AuctionDetails', component: AuctionDetailsView },
+    { path: '/auctions/:id', name: 'auctionDetails', component: AuctionDetailsView },
   ],
 })
 

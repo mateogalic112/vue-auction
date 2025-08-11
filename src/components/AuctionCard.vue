@@ -24,7 +24,7 @@ const { data: product, isLoading, isError, error } = useGetProductById(props.auc
     <p class="p-1 border border-red-400 w-fit" v-if="auction.is_cancelled">Cancelled</p>
     <RouterLink
       class="p-1 border border-slate-700 bg-slate-500 text-white"
-      :to="{ name: 'AuctionDetails', params: { id: auction.product_id } }"
+      :to="{ name: 'auctionDetails', params: { id: auction.product_id } }"
       >Bid</RouterLink
     >
   </li>
