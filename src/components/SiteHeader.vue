@@ -24,6 +24,10 @@ const { mutate: logout, isPending } = useLogout()
 
       <small v-if="state.connected">✅</small>
       <small v-else>❌</small>
+
+      <small v-if="currentUser">
+        {{ currentUser.username }}
+      </small>
     </nav>
   </header>
 </template>
