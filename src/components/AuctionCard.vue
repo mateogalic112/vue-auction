@@ -31,7 +31,7 @@ const { data: product, isLoading, isError, error } = useGetProductById(props.auc
     />
 
     <RouterLink
-      v-show="!props.auction.is_cancelled"
+      v-if="!props.auction.is_cancelled"
       class="p-1 border border-slate-700 bg-slate-500 text-white"
       :to="{ name: 'auctionDetails', params: { id: auction.product_id } }"
       >Bid</RouterLink

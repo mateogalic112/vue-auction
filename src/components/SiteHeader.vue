@@ -13,10 +13,10 @@ const { mutate: logout, isPending } = useLogout()
   <header>
     <nav class="flex gap-4 items-center">
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/login" v-show="!currentUser">Login</RouterLink>
+      <RouterLink to="/login" v-if="!currentUser">Login</RouterLink>
       <Button
         @click="() => logout()"
-        v-show="!!currentUser"
+        v-if="!!currentUser"
         :loading="isPending"
         class="cursor-pointer bg-red-500"
         >Logout</Button
